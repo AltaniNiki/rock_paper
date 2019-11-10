@@ -1,0 +1,72 @@
+.game{
+    width:100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.infoGame{
+    display: flex;
+    justify-content: space-between;
+    margin-left:10px;
+    margin-right: 10px;
+}
+
+.score{
+    font-family: 'AmericanTypewriter' Cambria, Georgia;
+    color:white;
+}
+
+.title{
+    font: 20px 'AmericanTypewriter', Cambria, Georgia; color: white; margin: 0 auto;
+}
+
+.round{
+    color:white;
+}
+
+.result{
+   width: 100vw;
+   height: 50vh;
+   display: flex;
+} 
+
+.resultInfo{
+    width:100vw;
+    height:40vh;
+    border:2px solid black;
+    display: flex;
+    align-self: flex-end;
+    justify-content: space-evenly;
+}
+
+.choiceDiv{
+    width: 100vw;
+    height: 20vh;
+    display: flex;
+    justify-content: space-around;
+}
+
+.choices{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.actions{
+    display: flex;
+    justify-content: center;
+}
+
+.btnChoice{
+    border: 2px dashed black;
+    border-radius: 5px;
+    margin-left:15px;
+}
+
+.btnChoice:hover{
+    box-shadow:1px 3px black;
+}
+
+.activeChoice{
+    background-color: green;
+}
