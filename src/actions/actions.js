@@ -1,8 +1,19 @@
 export const USER_CHOICE = 'USER_CHOICE';
 export const PC_CHOICE = 'PC_CHOICE';
+export const PC_SCORE = 'PC_SCORE';
+export const USER_SCORE = 'USER_SCORE';
 export const PAGE='PAGE';
+export const ROUND='ROUND';
+// import {store} from '../index.js';
 
+export function roundGame(roundVal){
+    const action = {
+        type:ROUND,
+        payload:roundVal
+    } 
 
+    return action;
+};
 
 export function playerChoice(choice){
     const action ={
@@ -14,21 +25,31 @@ export function playerChoice(choice){
 }
 
 export function pcChoice(choice){
-    
-    let options = ['pencil','paper','rock','scissors'];
-
-    let result = options[Math.floor(Math.random() * options.length)];
-
-    console.log(result);
-
-    
     const action = {
         type:PC_CHOICE,
-        payload:result
+        payload:choice
     } 
 
     return action;
 };
+
+export function scorePlayer(score){
+    const action={
+        type:USER_SCORE,
+        payload:score
+    }
+    return action;
+}
+
+export function scorePc(score){
+    const action={
+        type:PC_SCORE,
+        payload:score
+    }
+
+    return action;
+}
+
 
 export function pageViewAction(page){
     const action = {

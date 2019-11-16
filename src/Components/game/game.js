@@ -10,11 +10,54 @@ import rock from '../../img/rock_250.png';
 import scissors from '../../img/scissors_250.png';
 
 import { connect } from 'react-redux';
-import { playerChoice ,pcChoice} from '../../actions/actions.js';
+import { playerChoice ,pcChoice,scorePlayer,scorePc,roundGame} from '../../actions/actions.js';
 
 
 class Game extends React.Component{
 
+
+    calculateResult=()=>{
+        let options = ['pencil','paper','rock','scissors'];
+        let result = options[Math.floor(Math.random() * options.length)];
+        let thruthTable=[
+            [0,0,1,1],
+            [1,0,0,0],
+            [0,1,0,1],
+            [0,1,0,0]
+        ];
+        let new_score =0;
+        console.log('pc ',result, ' userChoice', this.props.player);
+
+        this.props.pcChoice(result);
+
+        let pc = result === 'rock'? 0 : result === 'paper' ? 1 : result === 'scissors'? 2 : result === 'pencil' ? 3 : '';
+        let  user = this.props.player === 'rock'? 0 : this.props.player === 'paper' ? 1 : this.props.player === 'scissors'? 2 : this.props.player === 'pencil' ? 3 : '';
+
+        //  console.log('pc ' , pc ,' user ',user);
+        
+        let playerUs = thruthTable[user][pc];
+        let playerPc = thruthTable[pc][user];
+
+
+        if (playerPc > playerUs){
+            console.log('kerdise to pc ');
+            console.log('score pc',this.props.scoreCpu);
+            new_score=this.props.scoreCpu +1;
+            this.props.scorePc(new_score);
+
+        }else if(playerUs > playerPc){
+            console.log('kerdise o user');
+            console.log('score pc',this.props.scroreUser);
+             new_score = this.props.scoreUser +1;   
+             this.props.scorePlayer(new_score);
+        }else {
+            console.log('isopalia');
+        }
+        
+        
+         this.props.roundGame(this.props.round +1);
+         
+    };
 
 
     render(){
@@ -25,7 +68,7 @@ class Game extends React.Component{
             <div className="game">
                 <div className="infoGame">
                     <div className="score">
-                        score: CPU {this.props.scroreUser} - YOU {this.props.scoreCpu}
+                        score: CPU {this.props.scoreUser} - YOU {this.props.scoreCpu}
                      </div>
 
                     <div className="title">
@@ -63,7 +106,7 @@ class Game extends React.Component{
                 </div>
                     
                 <div className="actions">
-                    <button onClick={this.props.pcChoice}>Go</button>
+                    <button onClick={this.calculateResult}>Go</button>
                 </div>
                     
             </div>
@@ -75,10 +118,10 @@ function mapStateToProps(state){
     return{
         player :state.userChoice,
         cpu: state.cumputerChoice,
-        scroreUser:state.scroreUser,
+        scoreUser:state.scoreUser,
         scoreCpu:state.scoreCpu,
         round: state.round
       };
 }
 
-export default connect(mapStateToProps,{playerChoice,pcChoice})(Game);
+export default connect(mapStateToProps,{playerChoice,pcChoice,scorePlayer,scorePc,roundGame})(Game);

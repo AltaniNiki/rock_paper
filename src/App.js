@@ -27,7 +27,7 @@ class App extends React.Component {
 
 
 function mapStateToProps(state){
-  console.log('state',state);
+  
   return{
     pageView :state.page
   };
