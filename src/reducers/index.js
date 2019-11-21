@@ -19,10 +19,11 @@ function allChoice(state=initStore,action){
         case PAGE:
             return {...state,page:action.payload};   
         case PC_SCORE:
-            return {...state,scoreUser:action.payload};
+            return {...state,scoreCpu:action.payload};
         case USER_SCORE:
-            return {...state,scoreCpu:action.payload};  
+            return {...state,scoreUser:action.payload};  
         case ROUND:
+                
             return {...state,round:action.payload};     
         default:
             return state;

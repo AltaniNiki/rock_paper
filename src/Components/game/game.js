@@ -17,21 +17,21 @@ class Game extends React.Component{
 
 
     calculateResult=()=>{
-        let options = ['pencil','paper','rock','scissors'];
+        let options = [/*'pencil',*/'paper','rock','scissors'];
         let result = options[Math.floor(Math.random() * options.length)];
         let thruthTable=[
-            [0,0,1,1],
-            [1,0,0,0],
-            [0,1,0,1],
-            [0,1,0,0]
+            [0,0,1/*,1*/],
+            [1,0,0/*,0*/],
+            [0,1,0/*,1*/],
+            [0,1,0/*,0*/]
         ];
         let new_score =0;
         console.log('pc ',result, ' userChoice', this.props.player);
 
         this.props.pcChoice(result);
 
-        let pc = result === 'rock'? 0 : result === 'paper' ? 1 : result === 'scissors'? 2 : result === 'pencil' ? 3 : '';
-        let  user = this.props.player === 'rock'? 0 : this.props.player === 'paper' ? 1 : this.props.player === 'scissors'? 2 : this.props.player === 'pencil' ? 3 : '';
+        let pc = result === 'rock'? 0 : result === 'paper' ? 1 : result === 'scissors'? 2 /*: result === 'pencil' ? 3 */: '';
+        let  user = this.props.player === 'rock'? 0 : this.props.player === 'paper' ? 1 : this.props.player === 'scissors'? 2 /*: this.props.player === 'pencil' ? 3*/ : '';
 
         //  console.log('pc ' , pc ,' user ',user);
         
@@ -68,7 +68,7 @@ class Game extends React.Component{
             <div className="game">
                 <div className="infoGame">
                     <div className="score">
-                        score: CPU {this.props.scoreUser} - YOU {this.props.scoreCpu}
+                        score: CPU {this.props.scoreCpu} - YOU {this.props.scoreUser}
                      </div>
 
                     <div className="title">
@@ -83,12 +83,11 @@ class Game extends React.Component{
                 <div className="result">
                     <div class="resultInfo">
                         <div id="cpuChoice">
-                            <img id="imgCpuChoice" src={(this.props.cpu === 'paper')?( paper):( (this.props.cpu === 'rock') ? rock: ( (this.props.cpu==='scissors'))?scissors:'' )}  />
-
+                            <img id="imgCpuChoice" src={(this.props.cpu === 'paper')?( paper): (this.props.cpu === 'rock') ? (rock):  (this.props.cpu==='scissors')?(scissors)/*: (this.props.cpu==='pencil')?('<i class="fas fa-pencil-alt"></i>')*/:'' }  />
                         </div>
                         
                         <div id="userChoice">
-                            <img src={( this.props.player === 'paper' ) ? ( paper):( (this.props.player === 'rock') ? rock: ( (this.props.player === 'scissors'))?scissors:'' )}/>
+                            <img src={ ( this.props.player === 'paper' ) ? ( paper): (this.props.player === 'rock') ? (rock):  (this.props.player === 'scissors')?(scissors):/*(this.props.cpu==='pencil')?('<i class="fas fa-pencil-alt"></i>'):*/''}/>
                         </div>
                     </div>
                 </div>
@@ -96,11 +95,11 @@ class Game extends React.Component{
                 <div className="choiceDiv">
                 
                     <div className="choices">
-                    
+                   
                         <div className={"btnChoice" + (this.props.player === 'paper' ? " activeChoice":"")} id="paper" onClick={()=>this.props.playerChoice('paper')}><img src={paper_choice} alt="paper"/> </div>
                         <div className={"btnChoice" + (this.props.player === 'rock' ? " activeChoice":"")} id="rock" onClick={()=>this.props.playerChoice('rock')}><img src={rock_choice} alt="rock"/> </div>
-                        <div className={"btnChoice" + (this.props.player === 'scissor' ? " activeChoice":"")} id="scissor" onClick={()=>this.props.playerChoice('scissors')}><img src={psalidi_choice} alt="psalidi"/> </div>
-                        <div className={"btnChoice" + (this.props.player === 'pencil' ? " activeChoice":"")} id="pencil" onClick={()=>this.props.playerChoice('pencil')}><img src={pencil_choice} alt="pencil"/> </div>
+                        <div className={"btnChoice" + (this.props.player === 'scissors' ? " activeChoice":"")} id="scissor" onClick={()=>this.props.playerChoice('scissors')}><img src={psalidi_choice} alt="psalidi"/> </div>
+                        {/* <div className={"btnChoice" + (this.props.player === 'pencil' ? " activeChoice":"")} id="pencil" onClick={()=>this.props.playerChoice('pencil')}><img src={pencil_choice} alt="pencil"/> </div> */}
                     </div>
                 
                 </div>
